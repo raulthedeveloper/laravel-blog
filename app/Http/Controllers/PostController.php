@@ -2,12 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Post;
-
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 
-class BlogController extends Controller
+class PostController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,29 +13,7 @@ class BlogController extends Controller
      */
     public function index()
     {
-        return view("blog.feature")->with("title","Blog");
-    }
-
-    public function archive(Request $request)
-    {
-        // $posts = DB::select('select * from posts');;
-        $posts = Post::get();
-
-        // return $posts;
-
-        
-        return view("blog.archive")->with('title',"Archive")->with('posts',$posts);
-    }
-
-    public function single($id)
-    {
-        // grab data from database with id and pass to view
-
-        $post = Post::where('slug',$id)->first(); 
-
-
-
-        return view("blog.single")->with('title',$post->title)->with('post',$post);
+        //
     }
 
     /**
@@ -46,37 +21,9 @@ class BlogController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-
-    public function createPostForm()
+    public function create()
     {
-        return view('posts.create-post');
-    }
-
-    public function editPostForm()
-    {
-        return view('posts.delete-post');
-    }
-
-    public function deletePostForm()
-    {
-        return view('posts.delete-post');
-    }
-
-    public function create(Request $request)
-    {
-
-        // Add Validation
-
-        $post = new App\Models\Post;
-
-        $post->post_id = uniqid('', true);
-        $post->title = $request->title;
-        $post->main_text = $request->main_text;
-        $post->featured_image = $request->featured_image;
-        $post->category = $request->category;
-        // Creates slug with title of blog
-        $post->slug = str_replace(" ", "_", $request->title);
-
+        //
     }
 
     /**

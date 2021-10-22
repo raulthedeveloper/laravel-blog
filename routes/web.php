@@ -27,6 +27,11 @@ Route::get('/blog',[App\Http\Controllers\BlogController::class, 'index'])->name(
 Route::get('/blog_archive',[App\Http\Controllers\BlogController::class, 'archive'])->name('blog_archive');
 Route::get('/blog/{id}',[App\Http\Controllers\BlogController::class, 'single'])->name('blog_single');
 
+Route::get('/create_post_form',[App\Http\Controllers\BlogController::class, 'createPostForm'])->name('create_posts_form');
+Route::get('/edit_post_form',[App\Http\Controllers\BlogController::class, 'editPostForm'])->name('edit_posts_form');
+Route::get('/delete_post_form',[App\Http\Controllers\BlogController::class, 'deletePostForm'])->name('delete_posts_form');
+
+
 Route::post('/create_post',[App\Http\Controllers\BlogController::class, 'create'])->name('create_posts');
 
 

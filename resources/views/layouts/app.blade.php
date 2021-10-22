@@ -21,8 +21,10 @@
 </head>
 <body>
     <div id="app">
+        @if(isset($title))
+        @include('../includes/secondaryhero',['title',$title])        
+        @endif
         
-        @include('../includes/secondaryhero',['title',$title])
 
         <main class="py-4">
             @yield('content')
