@@ -13,7 +13,7 @@ class PortfolioController extends Controller
      */
     public function index()
     {
-        return view('portfolio.portfolio');
+        return view('portfolio.portfolio')->with("title","My Portfolio");
     }
 
     /**
