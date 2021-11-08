@@ -35,7 +35,11 @@
               </div>
               <div class="col-md-8">
                 <div class="card-body">{{$post->title}}</h5>
-                  <p class="card-text">{{$post->main_text}}</p>
+                  <p class="card-text"> {{Str::words($post->main_text,30)}}</p>
+
+                 
+
+
                   <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
 
 

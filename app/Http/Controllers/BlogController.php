@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+
 use App\Models\Post;
 
 use Illuminate\Http\Request;
@@ -49,12 +50,12 @@ class BlogController extends Controller
 
     public function createPostForm()
     {
-        return view('posts.create-post');
+        return view('posts.create-post')->with("title","Create Post");
     }
 
     public function editPostForm()
     {
-        return view('posts.delete-post');
+        return view('posts.edit-post')->with("title","Edit Post");
     }
 
     public function deletePostForm()
@@ -65,9 +66,20 @@ class BlogController extends Controller
     public function create(Request $request)
     {
 
+
+        $validated = $request->validate([
+            'title' => 'required|unique:posts|max:255',
+            'main_text' => 'required',
+            'featured_image'=>'required | max:255',
+            'category' =>'required'
+        ]);
+
+
+        $post_slug = uniqid('',false);
+        
         // Add Validation
 
-        $post = new App\Models\Post;
+        $post = new Post;
 
         $post->post_id = uniqid('', true);
         $post->title = $request->title;
@@ -75,7 +87,12 @@ class BlogController extends Controller
         $post->featured_image = $request->featured_image;
         $post->category = $request->category;
         // Creates slug with title of blog
-        $post->slug = str_replace(" ", "_", $request->title);
+        // $post->slug = str_replace(" ", "_", $request->title);
+        $post->slug = $post_slug;
+
+        $post->save();
+        
+        return redirect()->back()->with('message','Post Added');
 
     }
 

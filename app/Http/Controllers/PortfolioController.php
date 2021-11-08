@@ -16,6 +16,11 @@ class PortfolioController extends Controller
         return view('portfolio.portfolio')->with("title","My Portfolio");
     }
 
+    public function single(Request $request)
+    {
+        return view('portfolio.single')->with("title",$request->title);
+    }
+
     /**
      * Show the form for creating a new resource.
      *

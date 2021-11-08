@@ -21,7 +21,6 @@
                 <li class="nav-item">
                     <a class="nav-link" href="{{ route('blog_archive') }}">{{ __('Blog Archive') }}</a>
                 </li>
-
                 
 
                 <li class="nav-item">
@@ -60,10 +59,9 @@
                             <a class="dropdown-item" href="{{ route('create_posts_form') }}">Create Post
                          </a>
 
-                         <a class="dropdown-item" href="{{ route('create_posts_form') }}">Edit Post
+                         <a class="dropdown-item" href="{{ route('edit_posts_form') }}">Edit Post
                         </a>
 
-                        <a class="dropdown-item" href="{{ route('create_posts_form') }}">Create Post
                         </a>
 
 
