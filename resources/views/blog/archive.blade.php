@@ -3,27 +3,7 @@
 @section('content')
 
 <div class="container">
-    {{-- <div class="row mb-3">
-        <div class="card m-auto" >
-            <div class="row g-0">
-              <div class="col-md-4">
-                <img src="https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/interior-design-hbx030120raji-009-copy-1580424230.jpg" class="img-fluid rounded-start" alt="...">
-              </div>
-              <div class="col-md-8">
-                <div class="card-body">
-                  <h5 class="card-title">Card title</h5>
-                  <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                  <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
-
-                  <a href="#" class="btn-success btn">
-                    Read More
-                </a>
-                </div>
-                
-              </div>
-            </div>
-          </div>
-    </div> --}}
+  
     @foreach ($posts as $post)
         
    
@@ -34,18 +14,21 @@
                 <img  src="{{$post->featured_image}}" class="img-fluid rounded-start h-100" alt="...">
               </div>
               <div class="col-md-8">
-                <div class="card-body">{{$post->title}}</h5>
+                <div class="card-body"><h3>{{$post->title}}</h3>
                   <p class="card-text"> {{Str::words($post->main_text,30)}}</p>
+                  <span class="badge bg-dark text-light py-2 px-4">{{$post->category}}</span>                 
 
-                 
+                  
 
+                  <p class="card-text mt-3"><span><strong>Author:</strong></span><span class="text-muted"> {{$post->author}}</span></p>
+                  <p class="card-text"><span>Published:</span><span class="text-muted"> {{$post->created_at->isoFormat('dddd D, Y')}}</span></p>
 
-                  <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
-
-
-                  <a href="{{ route('blog') }}/{{$post->slug}}" class="btn-success btn">
-                    Read More
-                </a>
+                  <div>
+                    <a href="{{ route('blog') }}/{{$post->slug}}" class="btn-success btn">
+                      Read More
+                  </a>
+                  </div>
+                  
                
                 </div>
               </div>

@@ -22,11 +22,12 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 Route::get('/portfolio',[App\Http\Controllers\PortfolioController::class, 'index'])->name('portfolio');
 
 
-
+// Retrieves blog posts
 Route::get('/blog',[App\Http\Controllers\BlogController::class, 'index'])->name('blog');
 Route::get('/blog_archive',[App\Http\Controllers\BlogController::class, 'archive'])->name('blog_archive');
 Route::get('/blog/{id}',[App\Http\Controllers\BlogController::class, 'single'])->name('blog_single');
 
+// Blog Posts Forms
 Route::get('/create_post_form',[App\Http\Controllers\BlogController::class, 'createPostForm'])->name('create_posts_form');
 Route::get('/edit_post_form',[App\Http\Controllers\BlogController::class, 'editPostForm'])->name('edit_posts_form');
 Route::get('/delete_post_form',[App\Http\Controllers\BlogController::class, 'deletePostForm'])->name('delete_posts_form');
@@ -43,3 +44,7 @@ Route::post('/delete_item',[App\Http\Controllers\BlogController::class, 'destroy
 
 
 Route::get('/contact',[App\Http\Controllers\ContactController::class, 'index'])->name('contact');
+
+
+Route::post('/add_category',[App\Http\Controllers\BlogController::class, 'createNewCategory'])->name('add_category');
+

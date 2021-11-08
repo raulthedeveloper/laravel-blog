@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 
 use App\Models\Post;
+use App\Models\BlogCategories;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -18,6 +19,23 @@ class BlogController extends Controller
     public function index()
     {
         return view("blog.feature")->with("title","Blog");
+    }
+
+    public function createNewCategory(Request $request)
+    {
+        
+
+        $new_category= new BlogCategories;
+
+        $new_category->category = $request->category;
+
+        $new_category->save();
+        
+        return redirect()->back()->with('cat_message','Category Added');
+    }
+
+    public function deleteCategory(){
+
     }
 
     public function archive(Request $request)
@@ -50,7 +68,10 @@ class BlogController extends Controller
 
     public function createPostForm()
     {
-        return view('posts.create-post')->with("title","Create Post");
+        $catergories = DB::table('blog_categories')->get();
+
+        
+        return view('posts.create-post')->with("title","Create Post")->with("categories",$catergories);
     }
 
     public function editPostForm()
@@ -65,13 +86,17 @@ class BlogController extends Controller
 
     public function create(Request $request)
     {
+        $first_name = auth()->user()->first_name;
+        $last_name = auth()->user()->last_name;
 
+        $author = "{$first_name} {$last_name}";
+        
 
         $validated = $request->validate([
             'title' => 'required|unique:posts|max:255',
             'main_text' => 'required',
             'featured_image'=>'required | max:255',
-            'category' =>'required'
+            // 'category' =>'required'
         ]);
 
 
@@ -86,6 +111,8 @@ class BlogController extends Controller
         $post->main_text = $request->main_text;
         $post->featured_image = $request->featured_image;
         $post->category = $request->category;
+        $post->author = $author;
+        $post->user_id = auth()->user()->id;
         // Creates slug with title of blog
         // $post->slug = str_replace(" ", "_", $request->title);
         $post->slug = $post_slug;
