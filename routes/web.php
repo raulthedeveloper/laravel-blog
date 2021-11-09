@@ -38,6 +38,7 @@ Route::post('/edit_post',[App\Http\Controllers\BlogController::class, 'edit'])->
 Route::post('/delete_post',[App\Http\Controllers\BlogController::class, 'destroy'])->name('delete_post');
 
 // Creating and editing portfolio items
+Route::get('/admin_posts',[App\Http\Controllers\BlogController::class, 'store'])->name('admin_posts');
 Route::post('/create_item',[App\Http\Controllers\BlogController::class, 'create'])->name('create_post');
 Route::post('/edit_itemt',[App\Http\Controllers\BlogController::class, 'edit'])->name('edit_post');
 Route::post('/delete_item',[App\Http\Controllers\BlogController::class, 'destroy'])->name('delete_post');

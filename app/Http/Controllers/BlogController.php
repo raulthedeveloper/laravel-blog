@@ -131,8 +131,11 @@ class BlogController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        //Shows all post in a table
+        return view('posts.admin-posts')->with('title','Your Posts');
     }
+
+
 
     /**
      * Display the specified resource.
@@ -142,7 +145,7 @@ class BlogController extends Controller
      */
     public function show($id)
     {
-        //
+        // Post page that displays all of the posts with crud functionality
     }
 
     /**
