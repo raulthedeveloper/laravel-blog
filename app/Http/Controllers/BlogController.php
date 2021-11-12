@@ -129,10 +129,15 @@ class BlogController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store()
     {
+
+        // auth()->user()->id;
         //Shows all post in a table
-        return view('posts.admin-posts')->with('title','Your Posts');
+        $userId = auth()->user()->id;
+        $posts = Post::where('user_id', $userId)->get();
+
+        return view('posts.admin-posts')->with('title','Your Posts')->with('posts',$posts);
     }
 
 
@@ -179,6 +184,11 @@ class BlogController extends Controller
      */
     public function destroy($id)
     {
-        //
+        
+
+        Post::where('post_id', $id)->delete();
+
+
+        return redirect()->back()->with('message', 'Post deleted.');
     }
 }

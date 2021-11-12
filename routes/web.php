@@ -34,14 +34,16 @@ Route::get('/delete_post_form',[App\Http\Controllers\BlogController::class, 'del
 
 // Creating and editing posts
 Route::post('/create_post',[App\Http\Controllers\BlogController::class, 'create'])->name('create_post');
-Route::post('/edit_post',[App\Http\Controllers\BlogController::class, 'edit'])->name('edit_post');
-Route::post('/delete_post',[App\Http\Controllers\BlogController::class, 'destroy'])->name('delete_post');
+Route::get('/edit_post',[App\Http\Controllers\BlogController::class, 'edit'])->name('edit_post');
+Route::get('/delete_post/{id}',[App\Http\Controllers\BlogController::class, 'destroy'])->name('delete_post');
 
 // Creating and editing portfolio items
 Route::get('/admin_posts',[App\Http\Controllers\BlogController::class, 'store'])->name('admin_posts');
 Route::post('/create_item',[App\Http\Controllers\BlogController::class, 'create'])->name('create_post');
-Route::post('/edit_itemt',[App\Http\Controllers\BlogController::class, 'edit'])->name('edit_post');
-Route::post('/delete_item',[App\Http\Controllers\BlogController::class, 'destroy'])->name('delete_post');
+
+// Portfolio items
+Route::post('/edit_item',[App\Http\Controllers\BlogController::class, 'edit'])->name('edit_post');
+Route::post('/delete_item/{id}',[App\Http\Controllers\BlogController::class, 'destroy'])->name('delete_item');
 
 
 Route::get('/contact',[App\Http\Controllers\ContactController::class, 'index'])->name('contact');

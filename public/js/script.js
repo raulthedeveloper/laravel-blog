@@ -48,3 +48,17 @@ $("#submit_post").submit(function (event) {
 
     event.currentTarget.onsubmit()
 })
+
+console.log('scripts are working')
+
+
+// Deletes posts in admin page
+function deletePost(url)
+{
+  console.log(url)
+  var r = confirm("Are you sure you want to delete this posts");
+  if (r == true) {
+    window.location.href = url
+  } 
+
+}
