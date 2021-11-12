@@ -34,7 +34,7 @@ Route::get('/delete_post_form',[App\Http\Controllers\BlogController::class, 'del
 
 // Creating and editing posts
 Route::post('/create_post',[App\Http\Controllers\BlogController::class, 'create'])->name('create_post');
-Route::get('/edit_post/{id}',[App\Http\Controllers\BlogController::class, 'edit'])->name('edit_post');
+Route::post('/update_post/{id}',[App\Http\Controllers\BlogController::class, 'update'])->name('update_post');
 Route::get('/delete_post/{id}',[App\Http\Controllers\BlogController::class, 'destroy'])->name('delete_post');
 
 // Creating and editing portfolio items

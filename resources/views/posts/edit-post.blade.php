@@ -23,9 +23,9 @@
                 </ul>
             </div>
             @endif
-
-            <form action=" {{URL::to('/')}}/create_post" method="post">
+            <form action="{{ route('update_post',[$post->post_id]) }}" method="POST">
                 @csrf
+                @method('POST')
                 <div class="form-group">
                     <label for="exampleInputEmail1">Title</label>
                     <input type="text" class="form-control" id="post_title" aria-describedby="post_title" name="title"

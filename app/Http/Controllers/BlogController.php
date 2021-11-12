@@ -180,6 +180,10 @@ class BlogController extends Controller
     public function update(Request $request, $id)
     {
         //
+        
+        Post::where('post_id',$id)->update(['title'=>$request->title,'main_text'=>$request->main_text,'featured_image'=>$request->featured_image,'category'=>$request->category]);
+        return redirect()->back()->with('message', 'Post Updated.');
+
     }
 
     /**
