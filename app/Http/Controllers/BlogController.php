@@ -74,9 +74,15 @@ class BlogController extends Controller
         return view('posts.create-post')->with("title","Create Post")->with("categories",$catergories);
     }
 
-    public function editPostForm()
+    public function editPostForm($id, Request $request)
     {
-        return view('posts.edit-post')->with("title","Edit Post");
+        
+    //    $post = Post::where('post_id', $id);
+    $catergories = DB::table('blog_categories')->get();
+   
+    $post =  Post::where('post_id', $id)->first();
+       
+        return view('posts.edit-post')->with("title","Edit Post")->with('post',$post)->with('categories',$catergories)->with('message','Post Updated');
     }
 
     public function deletePostForm()
@@ -161,7 +167,7 @@ class BlogController extends Controller
      */
     public function edit($id)
     {
-        //
+        // Used to change form a add update to db
     }
 
     /**
