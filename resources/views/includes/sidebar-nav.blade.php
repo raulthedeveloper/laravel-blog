@@ -61,7 +61,7 @@
                   </a>
                 </li>
                 <li>
-                  <a href="#">Add Item</a>
+                  <a href="{{ route('create_item_form') }}">Add Item</a>
                 </li>
                 
               </ul>
@@ -180,8 +180,8 @@
           </li>
           <li>
             <a href="#">
-              <i class="fa fa-folder"></i>
-              <span>Examples</span>
+              <i class="fa fa-cog"></i>
+              <span>Settings</span>
             </a>
           </li>
         </ul>

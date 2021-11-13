@@ -10004,4 +10004,6 @@ h3 {
     border-color: #dee2e6;
   }
 }
-
+.card-img-overlay {
+  background-color: #00000059;
+}

@@ -3,7 +3,6 @@
 @section('content')
 
 <div class="container">
-  
     @foreach ($posts as $post)
         
    
@@ -16,6 +15,11 @@
               <div class="col-md-8">
                 <div class="card-body"><h3>{{$post->title}}</h3>
                   <p class="card-text"> {{Str::words($post->main_text,30)}}</p>
+
+                  @if($post->created_at != $post->updated_at)
+                  <p class="card-text text-muted">Last Updated: {{$post->updated_at->isoFormat('dddd D, Y')}}</p>
+                  @endif
+
                   <span class="badge bg-dark text-light py-2 px-4">{{$post->category}}</span>                 
 
                   

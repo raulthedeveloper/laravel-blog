@@ -138,8 +138,6 @@ class BlogController extends Controller
     public function store()
     {
 
-        // auth()->user()->id;
-        //Shows all post in a table
         $userId = auth()->user()->id;
         $posts = Post::where('user_id', $userId)->get();
 
@@ -147,28 +145,6 @@ class BlogController extends Controller
     }
 
 
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        // Post page that displays all of the posts with crud functionality
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        // Used to change form a add update to db
-    }
 
     /**
      * Update the specified resource in storage.
@@ -179,7 +155,6 @@ class BlogController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
         
         Post::where('post_id',$id)->update(['title'=>$request->title,'main_text'=>$request->main_text,'featured_image'=>$request->featured_image,'category'=>$request->category]);
         return redirect()->back()->with('message', 'Post Updated.');

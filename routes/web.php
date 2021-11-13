@@ -39,15 +39,23 @@ Route::get('/delete_post/{id}',[App\Http\Controllers\BlogController::class, 'des
 
 // Creating and editing portfolio items
 Route::get('/admin_posts',[App\Http\Controllers\BlogController::class, 'store'])->name('admin_posts');
-Route::post('/create_item',[App\Http\Controllers\BlogController::class, 'create'])->name('create_post');
+
 
 // Portfolio items
-Route::post('/edit_item',[App\Http\Controllers\BlogController::class, 'edit'])->name('edit_item');
-Route::post('/delete_item/{id}',[App\Http\Controllers\BlogController::class, 'destroy'])->name('delete_item');
+Route::get('/create_item_form',[App\Http\Controllers\PortfolioController::class, 'createForm'])->name('create_item_form');
+
+
+Route::post('/create_item',[App\Http\Controllers\PortfolioController::class, 'create'])->name('create_item');
+Route::post('/edit_item/{id}',[App\Http\Controllers\PortfolioController::class, 'edit'])->name('edit_item');
+Route::post('/delete_item/{id}',[App\Http\Controllers\PortfolioController::class, 'destroy'])->name('delete_item');
 
 
 Route::get('/contact',[App\Http\Controllers\ContactController::class, 'index'])->name('contact');
 
 
+// Portfolio and Item categories
 Route::post('/add_category',[App\Http\Controllers\BlogController::class, 'createNewCategory'])->name('add_category');
+
+Route::post('/add_portfolio_category',[App\Http\Controllers\PortfolioController::class, 'createNewCategory'])->name('add_portfolio_category');
+
 

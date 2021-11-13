@@ -21,7 +21,7 @@
             </div>
             @endif
 
-            <form action=" {{URL::to('/')}}/create_post" method="post">
+            <form action=" {{URL::to('/')}}/create_item" method="post">
                 @csrf
                 <div class="form-group">
                     <label for="exampleInputEmail1">Title</label>
@@ -30,8 +30,8 @@
                 </div>
                 <div class="form-group">
                     <label for="exampleFormControlTextarea1">Body</label>
-                    <textarea class="form-control" id="exampleFormControlTextarea1" name="main_text" rows="6"
-                        value="{{ old('main_text') }}"></textarea>
+                    <textarea class="form-control" id="exampleFormControlTextarea1" name="description" rows="6"
+                        value="{{ old('description') }}"></textarea>
                 </div>
 
                 <div class="row">
@@ -39,8 +39,8 @@
                         <div class="form-group">
                             <label for="exampleFormControlFile1">Featured Image (url)</label>
                             {{-- <input name="featured_image" type="file" class="form-control-file" id="exampleFormControlFile1"> --}}
-                            <input class="form-control" name="featured_image" type="text"
-                                value="{{ old('featured_image') }}">
+                            <input class="form-control" name="images" type="text"
+                                value="{{ old('images') }}">
                         </div>
                     </div>
                     <div class="col-6">
@@ -65,13 +65,13 @@
 
         <div class="col-md-4 col-sm-12">
             <div>
-                <form action="{{URL::to('/')}}/add_category" method="POST">
+                <form action="{{URL::to('/')}}/add_portfolio_category" method="POST">
                     @csrf
                     <label for="inputPassword5" class="form-label">New Category</label>
                     <input type="text" id="inputPassword5" class="form-control mb-3" name="category"
                         aria-describedby="passwordHelpBlock">
 
-                    <button class="btn btn-success" id="submit_category">Add</button>
+                    <button class="btn btn-success" id="submit_portfolio_category">Add</button>
                     <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteModal">Remove</button>
                     
 

@@ -2,7 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Portfolio;
+use App\Models\PortfolioCategories;
+
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+
+
 
 class PortfolioController extends Controller
 {
@@ -21,14 +27,72 @@ class PortfolioController extends Controller
         return view('portfolio.single')->with("title",$request->title);
     }
 
+    public function createNewCategory(Request $request)
+    {
+
+
+        $new_category= new PortfolioCategories;
+
+        $new_category->category = $request->category;
+
+        $new_category->save();
+        
+        return redirect()->back()->with('message','Category Added');
+
+    }
+
+    public function createForm()
+    {
+        $catergories = DB::table('item_categories')->get();
+
+        
+        return view('portfolio.create-item-form')->with("title","Create Item")->with("categories",$catergories);
+
+    }
+
     /**
      * Show the form for creating a new resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
-        //
+        $first_name = auth()->user()->first_name;
+        $last_name = auth()->user()->last_name;
+
+        $owner = "{$first_name} {$last_name}";
+        
+
+        $validated = $request->validate([
+            'title' => 'required|unique:posts|max:255',
+            'description' => 'required',
+            'images'=>'required | max:255',
+            // 'category' =>'required'
+        ]);
+
+
+        $item_slug = uniqid('',false);
+
+        
+        
+        // Add Validation
+
+        $portfolio = new Portfolio;
+
+        $portfolio->item_id = uniqid('', true);
+        $portfolio->title = $request->title;
+        $portfolio->description = $request->description;
+        $portfolio->images = $request->images;
+        $portfolio->category = $request->category;
+        $portfolio->owner = $owner;
+        $portfolio->user_id = auth()->user()->id;
+        // Creates slug with title of blog
+        // $post->slug = str_replace(" ", "_", $request->title);
+        $portfolio->slug = $item_slug;
+
+        $portfolio->save();
+        
+        return redirect()->back()->with('message','Post Added');
     }
 
     /**
@@ -40,6 +104,14 @@ class PortfolioController extends Controller
     public function store(Request $request)
     {
         //
+    }
+
+    public function showAllItems()
+    {
+        $userId = auth()->user()->id;
+        $posts = Portolio::where('user_id', $userId)->get();
+
+        return view('posts.admin-posts')->with('title','Your Posts')->with('posts',$posts);
     }
 
     /**
