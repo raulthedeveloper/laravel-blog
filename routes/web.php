@@ -41,12 +41,20 @@ Route::get('/delete_post/{id}',[App\Http\Controllers\BlogController::class, 'des
 Route::get('/admin_posts',[App\Http\Controllers\BlogController::class, 'store'])->name('admin_posts');
 
 
+
+
 // Portfolio items
+
+Route::get('/admin_items',[App\Http\Controllers\PortfolioController::class, 'showAllItems'])->name('admin_items');
+
+
 Route::get('/create_item_form',[App\Http\Controllers\PortfolioController::class, 'createForm'])->name('create_item_form');
+Route::get('/edit_item_form/{id}',[App\Http\Controllers\PortfolioController::class, 'editItemForm'])->name('edit_item_form');
+
 
 
 Route::post('/create_item',[App\Http\Controllers\PortfolioController::class, 'create'])->name('create_item');
-Route::post('/edit_item/{id}',[App\Http\Controllers\PortfolioController::class, 'edit'])->name('edit_item');
+Route::post('/update_item/{id}',[App\Http\Controllers\PortfolioController::class, 'update'])->name('update_item');
 Route::post('/delete_item/{id}',[App\Http\Controllers\PortfolioController::class, 'destroy'])->name('delete_item');
 
 
@@ -57,5 +65,11 @@ Route::get('/contact',[App\Http\Controllers\ContactController::class, 'index'])-
 Route::post('/add_category',[App\Http\Controllers\BlogController::class, 'createNewCategory'])->name('add_category');
 
 Route::post('/add_portfolio_category',[App\Http\Controllers\PortfolioController::class, 'createNewCategory'])->name('add_portfolio_category');
+
+
+// Settings
+Route::get('/settings_general',[App\Http\Controllers\SettingsController::class, 'settingsGeneral'])->name('settings_general');
+
+Route::post('/upload_avatar',[App\Http\Controllers\SettingsController::class, 'uploadAvatar'])->name('upload_avatar');
 
 

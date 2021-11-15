@@ -56,7 +56,7 @@
             <div class="sidebar-submenu">
               <ul>
                 <li>
-                  <a href="#">All Items
+                  <a href="{{route('admin_items')}}">All Items
                     {{-- <span class="badge badge-pill badge-success">Pro</span> --}}
                   </a>
                 </li>
@@ -101,18 +101,18 @@
           </li>
           <li class="sidebar-dropdown">
             <a href="#">
-              <i class="far fa-gem"></i>
-              <span>Components</span>
+              <i class="far fa-image"></i>
+              <span>Media Gallery</span>
             </a>
             <div class="sidebar-submenu">
               <ul>
                 <li>
-                  <a href="#">General</a>
+                  <a href="#">Photo Gallery</a>
                 </li>
                 <li>
-                  <a href="#">Panels</a>
+                  <a href="#">Video Gallery</a>
                 </li>
-                <li>
+                {{-- <li>
                   <a href="#">Tables</a>
                 </li>
                 <li>
@@ -120,7 +120,7 @@
                 </li>
                 <li>
                   <a href="#">Forms</a>
-                </li>
+                </li> --}}
               </ul>
             </div>
           </li>
@@ -179,7 +179,7 @@
             </a>
           </li>
           <li>
-            <a href="#">
+            <a href="{{route('settings_general')}}">
               <i class="fa fa-cog"></i>
               <span>Settings</span>
             </a>

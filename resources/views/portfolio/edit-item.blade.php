@@ -2,7 +2,6 @@
 
 @section('content')
 <div class="container">
-
     <div class="row justify-content-center">
         <div class="col-md-8 col-sm-12">
             @if(session()->has('message'))
@@ -21,26 +20,26 @@
             </div>
             @endif
 
-            <form action=" {{URL::to('/')}}/create_post" method="post">
+            <form action="{{ route('update_item',[$item->item_id]) }}" method="post">
                 @csrf
                 <div class="form-group">
                     <label for="exampleInputEmail1">Title</label>
                     <input type="text" class="form-control" id="post_title" aria-describedby="post_title" name="title"
-                        value="{{ old('title') }}">
+                        value="{{ $item->title }}">
                 </div>
                 <div class="form-group">
                     <label for="exampleFormControlTextarea1">Body</label>
-                    <textarea class="form-control" id="exampleFormControlTextarea1" name="main_text" rows="6"
-                        value="{{ old('main_text') }}"></textarea>
+                    <textarea class="form-control" id="exampleFormControlTextarea1" name="description" rows="6"
+                        value="">{{ $item->description }}</textarea>
                 </div>
 
                 <div class="row">
                     <div class="col-6">
                         <div class="form-group">
-                            <label for="exampleFormControlFile1">Featured Image (url)</label>
+                            <label for="exampleFormControlFile1">Images (url)</label>
                             {{-- <input name="featured_image" type="file" class="form-control-file" id="exampleFormControlFile1"> --}}
-                            <input class="form-control" name="featured_image" type="text"
-                                value="{{ old('featured_image') }}">
+                            <input class="form-control" name="images" type="text"
+                                value="{{ $item->images }}">
                         </div>
                     </div>
                     <div class="col-6">

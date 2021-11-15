@@ -50,6 +50,19 @@ class PortfolioController extends Controller
 
     }
 
+    public function editItemForm($id, Request $request)
+    {
+        
+    //    $post = Post::where('post_id', $id);
+    $catergories = DB::table('item_categories')->get();
+   
+    $item =  Portfolio::where('item_id', $id)->first();
+
+    
+       
+        return view('portfolio.edit-item')->with("title","Edit Portfolio Item")->with('item',$item)->with('categories',$catergories)->with('message','Item Updated');
+    }
+
     /**
      * Show the form for creating a new resource.
      *
@@ -109,9 +122,9 @@ class PortfolioController extends Controller
     public function showAllItems()
     {
         $userId = auth()->user()->id;
-        $posts = Portolio::where('user_id', $userId)->get();
+        $items = Portfolio::where('user_id', $userId)->get();
 
-        return view('posts.admin-posts')->with('title','Your Posts')->with('posts',$posts);
+        return view('portfolio.admin-items')->with('title','Your items')->with('items',$items);
     }
 
     /**
@@ -125,16 +138,7 @@ class PortfolioController extends Controller
         //
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
+   
 
     /**
      * Update the specified resource in storage.
@@ -145,7 +149,10 @@ class PortfolioController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        
+        Portfolio::where('item_id',$id)->update(['title'=>$request->title,'description'=>$request->description,'images'=>$request->images,'category'=>$request->category]);
+        return redirect()->back()->with('message', 'Post Updated.');
+
     }
 
     /**

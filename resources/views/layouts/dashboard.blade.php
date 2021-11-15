@@ -12,7 +12,7 @@
   @include('includes.sidebar-nav')
   <!-- sidebar-wrapper  -->
   <main class="page-content">
-    <div class="container-fluid">
+    <div class="container">
       
       @if(isset($title))
       <h2>{{$title}}</h2>
