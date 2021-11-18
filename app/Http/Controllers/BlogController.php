@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Post;
 use App\Models\BlogCategories;
+use Illuminate\Support\Facades\Storage;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -57,6 +58,7 @@ class BlogController extends Controller
 
 
 
+
         return view("blog.single")->with('title',$post->title)->with('post',$post);
     }
 
@@ -101,7 +103,7 @@ class BlogController extends Controller
         $validated = $request->validate([
             'title' => 'required|unique:posts|max:255',
             'main_text' => 'required',
-            'featured_image'=>'required | max:255',
+            'featured_image'=>'required',
             // 'category' =>'required'
         ]);
 
@@ -112,18 +114,24 @@ class BlogController extends Controller
 
         $post = new Post;
 
+        $this->uploadFeaturedImage($request,$post);
+
+        
+
         $post->post_id = uniqid('', true);
         $post->title = $request->title;
         $post->main_text = $request->main_text;
-        $post->featured_image = $request->featured_image;
         $post->category = $request->category;
         $post->author = $author;
+        
         $post->user_id = auth()->user()->id;
         // Creates slug with title of blog
         // $post->slug = str_replace(" ", "_", $request->title);
         $post->slug = $post_slug;
 
         $post->save();
+
+        
         
         return redirect()->back()->with('message','Post Added');
 
@@ -155,10 +163,63 @@ class BlogController extends Controller
      */
     public function update(Request $request, $id)
     {
-        
-        Post::where('post_id',$id)->update(['title'=>$request->title,'main_text'=>$request->main_text,'featured_image'=>$request->featured_image,'category'=>$request->category]);
+        // Post::find(auth()->user()->id)->update(['avatar'=>$filenameWithId]);
+
+        // dd(Post::where('post_id',$id)->get(['featured_image']));
+
+        $this->uploadFeaturedImage($request,$id,true);
+
+        Post::where('post_id',$id)->update(['title'=>$request->title,'main_text'=>$request->main_text,'category'=>$request->category]);
         return redirect()->back()->with('message', 'Post Updated.');
 
+    }
+
+    public function uploadFeaturedImage($request,$post,$update=false)
+    {
+        // if an update is happing $post is the id of the Post used for updating current posts
+
+        if($request->hasFile('featured_image'))
+            {
+         
+            $filename = $request->featured_image->getClientOriginalName();
+            $filenameExploded = explode(".", $filename);
+            
+            //Adds unique Id to avatar image name to prevent deletion of same name
+           $filenameWithId = implode(".",[$filenameExploded[0] . uniqid('_', false),$filenameExploded[1]]);
+
+            
+           
+
+            $request->featured_image->storeAs('images/post_images',$filenameWithId,'public');
+
+        //    Checks if post is being updated
+
+            if($update)
+            {
+
+                $currentImage =  DB::table('posts')->where('post_id', $post)->first();
+
+                
+        //    Checks if there is a previous featured image if so it gets deleted
+
+                if($currentImage->featured_image)
+                    {
+                        Storage::delete('/public/images/post_images/' . $currentImage->featured_image);
+                        Post::where('post_id',$post)->update(['featured_image'=>$filenameWithId]);
+                    }
+
+            }
+            else
+            {
+                $post->featured_image = $filenameWithId;
+            }
+            
+            
+
+
+            }
+        
+        // return redirect()->back()->with('message','Avatar Updated');
     }
 
     /**
@@ -169,7 +230,9 @@ class BlogController extends Controller
      */
     public function destroy($id)
     {
+        $currentImage =  DB::table('posts')->where('post_id', $id)->first();
         
+        Storage::delete('/public/images/post_images/' . $currentImage->featured_image);
 
         Post::where('post_id', $id)->delete();
 

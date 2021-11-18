@@ -28,7 +28,7 @@ Route::get('/blog_archive',[App\Http\Controllers\BlogController::class, 'archive
 Route::get('/blog/{id}',[App\Http\Controllers\BlogController::class, 'single'])->name('blog_single');
 
 // Blog Posts Forms
-Route::get('/create_post_form',[App\Http\Controllers\BlogController::class, 'createPostForm'])->name('create_posts_form');
+Route::get('/create_post_form',[App\Http\Controllers\BlogController::class, 'createPostForm'])->name('create_post_form');
 Route::get('/edit_post_form/{id}',[App\Http\Controllers\BlogController::class, 'editPostForm'])->name('edit_post_form');
 Route::get('/delete_post_form',[App\Http\Controllers\BlogController::class, 'deletePostForm'])->name('delete_posts_form');
 
@@ -40,6 +40,8 @@ Route::get('/delete_post/{id}',[App\Http\Controllers\BlogController::class, 'des
 // Creating and editing portfolio items
 Route::get('/admin_posts',[App\Http\Controllers\BlogController::class, 'store'])->name('admin_posts');
 
+// Uploades featured images
+Route::post('/upload_featured_image',[App\Http\Controllers\BlogController::class, 'uploadFeaturedImage'])->name('upload_featured_image');
 
 
 
@@ -71,5 +73,6 @@ Route::post('/add_portfolio_category',[App\Http\Controllers\PortfolioController:
 Route::get('/settings_general',[App\Http\Controllers\SettingsController::class, 'settingsGeneral'])->name('settings_general');
 
 Route::post('/upload_avatar',[App\Http\Controllers\SettingsController::class, 'uploadAvatar'])->name('upload_avatar');
+
 
 

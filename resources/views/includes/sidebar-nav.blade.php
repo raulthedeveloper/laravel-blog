@@ -8,8 +8,14 @@
       </div>
       <div class="sidebar-header">
         <div class="user-pic">
-          <img class="img-responsive img-rounded" src="https://raw.githubusercontent.com/azouaoui-med/pro-sidebar-template/gh-pages/src/img/user.jpg"
+          @if(auth()->user()->avatar)
+          <img class="img-responsive img-rounded" src="{{ asset("storage/images/profile_avatar/". auth()->user()->avatar) }}"
             alt="User picture">
+          
+          @else 
+            <img class="img-responsive img-rounded" src="https://raw.githubusercontent.com/azouaoui-med/pro-sidebar-template/gh-pages/src/img/user.jpg"
+            alt="User picture">
+            @endif
         </div>
         <div class="user-info">
           <span class="user-name">{{ Auth::user()->first_name }}
@@ -90,7 +96,7 @@
                     </a>
                   </li>
                 <li>
-                  <a href="{{ route('create_posts_form') }}">
+                  <a href="{{ route('create_post_form') }}">
                       Add Posts
 
                   </a>

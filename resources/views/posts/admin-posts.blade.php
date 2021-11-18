@@ -3,6 +3,8 @@
 @section('content')
 
 <div class="container">
+  <a href="{{ route('create_post_form')}}" class="btn btn-success mb-3">Add New</a>
+
   @if(session()->has('message'))
   <div class="alert alert-success">
       {{ session()->get('message') }}

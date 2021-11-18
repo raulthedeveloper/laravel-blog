@@ -1,7 +1,13 @@
 @extends('layouts.dashboard')
 
 @section('content')
+@if(session()->has('message'))
+<div class="alert alert-success">
+    {{ session()->get('message') }}
+</div>
+@endif
     <div class="container">
+      
         <div class="row justify-content-center">
             
                 <form action="{{ route('settings_general') }}" method="POST" class="w-100" enctype="multipart/form-data">

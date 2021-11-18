@@ -5,7 +5,12 @@
 
 
 <div class="container">
-
+    <div class="mb-3"  >
+        <a href="{{ route('admin_posts')}}" class="btn btn-dark">Back</a>
+    <a href="{{ route('blog') }}/{{$post->slug}}" class="btn btn-primary">View</a>
+    </div>
+    
+    
     <div class="row justify-content-center">
         <div class="col-md-8 col-sm-12">
             @if(session()->has('message'))
@@ -23,7 +28,7 @@
                 </ul>
             </div>
             @endif
-            <form action="{{ route('update_post',[$post->post_id]) }}" method="POST">
+            <form action="{{ route('update_post',[$post->post_id]) }}" method="POST" enctype="multipart/form-data">
                 @csrf
                 @method('POST')
                 <div class="form-group">
@@ -40,11 +45,9 @@
                 <div class="row">
                     <div class="col-6">
                         <div class="form-group">
-                            <label for="exampleFormControlFile1">Featured Image (url)</label>
-                            {{-- <input name="featured_image" type="file" class="form-control-file" id="exampleFormControlFile1"> --}}
-                            <input class="form-control" name="featured_image" type="text"
-                                value="{{$post->featured_image}}">
-                        </div>
+                            <label for="exampleFormControlFile1">Upload Image</label>
+                            <input name="featured_image" type="file" class="form-control-file">
+                          </div>
                     </div>
                     <div class="col-6">
                         <div class="form-group">
@@ -57,15 +60,15 @@
                         </div>
 
 
-
-
-
                     </div>
                 </div>
 
 
 
-                <button id="submit_post" class="btn btn-primary">Submit</button>
+                <button id="submit_post" class="btn btn-success">Submit</button>
+
+                
+
             </form>
         </div>
 

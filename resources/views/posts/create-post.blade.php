@@ -2,6 +2,10 @@
 
 @section('content')
 <div class="container">
+    <div class="mb-3"  >
+        <a href="{{ route('admin_posts')}}" class="btn btn-dark">To Posts</a>
+    </div>
+
 
     <div class="row justify-content-center">
         <div class="col-md-8 col-sm-12">
@@ -21,7 +25,7 @@
             </div>
             @endif
 
-            <form action=" {{URL::to('/')}}/create_post" method="post">
+            <form action=" {{URL::to('/')}}/create_post" method="post" enctype="multipart/form-data">
                 @csrf
                 <div class="form-group">
                     <label for="exampleInputEmail1">Title</label>
@@ -35,14 +39,14 @@
                 </div>
 
                 <div class="row">
+
                     <div class="col-6">
                         <div class="form-group">
-                            <label for="exampleFormControlFile1">Featured Image (url)</label>
-                            {{-- <input name="featured_image" type="file" class="form-control-file" id="exampleFormControlFile1"> --}}
-                            <input class="form-control" name="featured_image" type="text"
-                                value="{{ old('featured_image') }}">
-                        </div>
+                            <label for="exampleFormControlFile1">Upload Image</label>
+                            <input name="featured_image" type="file" class="form-control-file">
+                          </div>
                     </div>
+                    
                     <div class="col-6">
                         <div class="form-group">
                             <label for="exampleFormControlFile1">Category</label>
@@ -53,22 +57,31 @@
                             </select>
                         </div>
 
-                       
-
-                       
+                        
 
                     </div>
                 </div>
 
 
+                
 
-                <button id="submit_post" class="btn btn-primary">Submit</button>
+
+                <button id="submit_post" class="btn btn-success">Submit</button>
+
+              
+
             </form>
+
+            
         </div>
 
         <div class="col-md-4 col-sm-12">
             <div>
-                <form action="{{URL::to('/')}}/add_category" method="POST">
+              
+
+
+
+                <form action="{{URL::to('/')}}/add_category" method="POST" enctype="multipart/form-data">
                     @csrf
                     <label for="inputPassword5" class="form-label">New Category</label>
                     <input type="text" id="inputPassword5" class="form-control mb-3" name="category"

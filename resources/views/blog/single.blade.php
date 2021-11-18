@@ -6,7 +6,7 @@
 
 <div class="container">
     <div class="row">
-        <img class="w-100" style="max-height:500px" src="{{$post->featured_image}}" alt="">
+        <img class="w-100" style="max-height:500px" src="{{asset("storage/images/post_images/".$post->featured_image)}}" alt="">
     </div>
 
     <div class="row">
