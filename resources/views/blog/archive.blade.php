@@ -28,7 +28,8 @@
                   <p class="card-text"><span>Published:</span><span class="text-muted"> {{$post->created_at->isoFormat('dddd D, Y')}}</span></p>
 
                   <div>
-                    <a href="{{ route('blog') }}/{{$post->slug}}" class="btn-success btn">
+                    
+                    <a href="{{ route('blog') }}/{{$post->category}}/{{$post->slug}}" class="btn-success btn">
                       Read More
                   </a>
                   </div>

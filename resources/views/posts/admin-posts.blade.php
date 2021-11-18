@@ -34,7 +34,7 @@
               <td>{{$post->author}}</td>
               <td>{{$post->category}}</td>
               <td>{{$post->created_at->isoFormat('dddd D, Y')}}</td>
-              <td><a href="{{ route('blog') }}/{{$post->slug}}" class="btn btn-primary">View</a></td>
+              <td><a href="{{ route('blog') }}/{{$post->category}}/{{$post->slug}}" class="btn btn-primary">View</a></td>
               <td><a href="{{ route('edit_post_form',[$post->post_id]) }}" class="btn btn-secondary">Edit</a></td>
               <td><button type="button" class="btn btn-danger" onclick="deletePost('{{ route('delete_post',[$post->post_id]) }}')">
                 Delete

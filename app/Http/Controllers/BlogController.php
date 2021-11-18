@@ -50,12 +50,11 @@ class BlogController extends Controller
         return view("blog.archive")->with('title',"Archive")->with('posts',$posts);
     }
 
-    public function single($id)
+    public function single($cat,$id)
     {
         // grab data from database with id and pass to view
 
         $post = Post::where('slug',$id)->first(); 
-
 
 
 
@@ -231,7 +230,7 @@ class BlogController extends Controller
     public function destroy($id)
     {
         $currentImage =  DB::table('posts')->where('post_id', $id)->first();
-        
+
         Storage::delete('/public/images/post_images/' . $currentImage->featured_image);
 
         Post::where('post_id', $id)->delete();
