@@ -84,7 +84,7 @@ class PortfolioController extends Controller
         ]);
 
 
-        $item_slug = uniqid('',false);
+        $item_id = hexdec(uniqid());
 
         
         
@@ -92,7 +92,7 @@ class PortfolioController extends Controller
 
         $portfolio = new Portfolio;
 
-        $portfolio->item_id = uniqid('', true);
+        $portfolio->item_id = $item_id;
         $portfolio->title = $request->title;
         $portfolio->description = $request->description;
         $portfolio->images = $request->images;
@@ -101,7 +101,7 @@ class PortfolioController extends Controller
         $portfolio->user_id = auth()->user()->id;
         // Creates slug with title of blog
         // $post->slug = str_replace(" ", "_", $request->title);
-        $portfolio->slug = $item_slug;
+        $portfolio->slug = $item_id;
 
         $portfolio->save();
         

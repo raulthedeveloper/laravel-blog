@@ -15,7 +15,7 @@ class CreateBlogPostTable extends Migration
     {
         Schema::create('posts', function (Blueprint $table) {
             $table->id();
-            $table->uuid('post_id');
+            $table->foreignId('post_id');
             $table->string('title',64);
             $table->text('main_text');
             $table->string('featured_image');

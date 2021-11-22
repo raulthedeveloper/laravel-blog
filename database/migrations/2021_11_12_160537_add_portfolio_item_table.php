@@ -15,7 +15,7 @@ class AddPortfolioItemTable extends Migration
     {
         Schema::create('portfolio', function (Blueprint $table) {
             $table->id();
-            $table->uuid('item_id');
+            $table->foreignId('item_id');
             $table->string('title',64);
             $table->text('description');
             $table->string('images');

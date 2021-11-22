@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 
 use App\Models\Post;
+use App\Models\PostImages;
 use App\Models\BlogCategories;
 use Illuminate\Support\Facades\Storage;
 
@@ -93,6 +94,8 @@ class BlogController extends Controller
 
     public function create(Request $request)
     {
+        
+
         $first_name = auth()->user()->first_name;
         $last_name = auth()->user()->last_name;
 
@@ -100,24 +103,26 @@ class BlogController extends Controller
         
 
         $validated = $request->validate([
-            'title' => 'required|unique:posts|max:255',
-            'main_text' => 'required',
-            'featured_image'=>'required',
+            // 'title' => 'required|unique:posts|max:255',
+            // 'main_text' => 'required',
+            // 'featured_image'=>'required',
             // 'category' =>'required'
         ]);
 
 
-        $post_slug = uniqid('',false);
+        $post_id = hexdec(uniqid());
         
         // Add Validation
 
         $post = new Post;
 
+        $this->uploadPostImages($request,1);
+
         $this->uploadFeaturedImage($request,$post);
 
         
 
-        $post->post_id = uniqid('', true);
+        $post->post_id = $post_id;
         $post->title = $request->title;
         $post->main_text = $request->main_text;
         $post->category = $request->category;
@@ -126,7 +131,7 @@ class BlogController extends Controller
         $post->user_id = auth()->user()->id;
         // Creates slug with title of blog
         // $post->slug = str_replace(" ", "_", $request->title);
-        $post->slug = $post_slug;
+        $post->slug = $post_id;
 
         $post->save();
 
@@ -162,14 +167,23 @@ class BlogController extends Controller
      */
     public function update(Request $request, $id)
     {
-        // Post::find(auth()->user()->id)->update(['avatar'=>$filenameWithId]);
-
-        // dd(Post::where('post_id',$id)->get(['featured_image']));
 
         $this->uploadFeaturedImage($request,$id,true);
 
         Post::where('post_id',$id)->update(['title'=>$request->title,'main_text'=>$request->main_text,'category'=>$request->category]);
         return redirect()->back()->with('message', 'Post Updated.');
+
+    }
+
+    public function uploadPostImages($request,$id,$update=false)
+    {
+
+        dd($request->post_images);
+
+        if($request->hasFile('post_images'))
+        {
+
+        }
 
     }
 

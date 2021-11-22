@@ -43,13 +43,13 @@
                 </div>
 
                 <div class="row">
-                    <div class="col-6">
+                    <div class="col-4">
                         <div class="form-group">
                             <label for="exampleFormControlFile1">Upload Image</label>
                             <input name="featured_image" type="file" class="form-control-file">
                           </div>
                     </div>
-                    <div class="col-6">
+                    <div class="col-4">
                         <div class="form-group">
                             <label for="exampleFormControlFile1">Category</label>
                             <select name="category" class="form-control" value="{{$post->category}}">
@@ -59,8 +59,13 @@
                             </select>
                         </div>
 
-
                     </div>
+
+                    <div class="col-4">
+                        <div class="form-group">
+                            <label for="exampleFormControlFile1">Upload Posts Images</label>
+                            <input name="featured_image" type="file" class="form-control-file" multiple>
+                          </div>
                 </div>
 
 
