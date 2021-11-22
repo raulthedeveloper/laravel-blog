@@ -9,7 +9,7 @@ class PostImages extends Model
 {
     use HasFactory;
 
-    protected $table = 'post_categories';
+    protected $table = 'post_images';
 
     protected $fillable = [];
 }

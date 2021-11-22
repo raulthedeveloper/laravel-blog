@@ -103,10 +103,12 @@ class BlogController extends Controller
         
 
         $validated = $request->validate([
-            // 'title' => 'required|unique:posts|max:255',
-            // 'main_text' => 'required',
-            // 'featured_image'=>'required',
-            // 'category' =>'required'
+            'title' => 'required|unique:posts|max:255',
+            'main_text' => 'required',
+            'featured_image'=>'required | max:5330',
+            'category' =>'required',
+            // 'post_images' => 'max:4',
+            // 'post_images.*'=> 'mimes:jpg,jpeg,png'
         ]);
 
 
@@ -116,13 +118,12 @@ class BlogController extends Controller
 
         $post = new Post;
 
-        $this->uploadPostImages($request,1);
+       
 
         $this->uploadFeaturedImage($request,$post);
 
         
-
-        $post->post_id = $post_id;
+        $post->id = $post_id;
         $post->title = $request->title;
         $post->main_text = $request->main_text;
         $post->category = $request->category;
@@ -135,6 +136,7 @@ class BlogController extends Controller
 
         $post->save();
 
+        $this->uploadPostImages($request,$post_id);
         
         
         return redirect()->back()->with('message','Post Added');
@@ -178,17 +180,55 @@ class BlogController extends Controller
     public function uploadPostImages($request,$id,$update=false)
     {
 
+
+        // $post_images= new PostImages;
         dd($request->post_images);
+
 
         if($request->hasFile('post_images'))
         {
+          
 
+            $image_payload = $request->post_images;
+            
+            foreach($image_payload as $image)
+            {
+                $filename = $image->getClientOriginalName();
+                $filenameExploded = explode(".", $filename);
+            
+            //Adds unique Id to avatar image name to prevent deletion of same name
+                $filenameWithId = implode(".",[$filenameExploded[0] . uniqid('_', false),$filenameExploded[1]]);
+
+
+                DB::table('post_images')->insert([
+                    'post_id' => $id,
+                    'image' => $filenameWithId
+                ]);
+
+                $request->featured_image->storeAs('images/post_images',$filenameWithId,'public');
+
+                
+                // Also Save images in folder
+
+
+            
+
+
+            }
+
+            
+            
+
+
+            
         }
 
     }
 
     public function uploadFeaturedImage($request,$post,$update=false)
     {
+
+        // dd($request->featured_image);
         // if an update is happing $post is the id of the Post used for updating current posts
 
         if($request->hasFile('featured_image'))
@@ -203,7 +243,7 @@ class BlogController extends Controller
             
            
 
-            $request->featured_image->storeAs('images/post_images',$filenameWithId,'public');
+            $request->featured_image->storeAs('images/post_featured_images',$filenameWithId,'public');
 
         //    Checks if post is being updated
 
@@ -217,7 +257,7 @@ class BlogController extends Controller
 
                 if($currentImage->featured_image)
                     {
-                        Storage::delete('/public/images/post_images/' . $currentImage->featured_image);
+                        Storage::delete('/public/images/post_featured_images/' . $currentImage->featured_image);
                         Post::where('post_id',$post)->update(['featured_image'=>$filenameWithId]);
                     }
 
@@ -232,7 +272,6 @@ class BlogController extends Controller
 
             }
         
-        // return redirect()->back()->with('message','Avatar Updated');
     }
 
     /**

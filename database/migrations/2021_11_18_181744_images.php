@@ -17,11 +17,11 @@ class Images extends Migration
             $table->string('name');
             $table->string('image');
 
-            $table->bigInteger('post_id')->unsigned()->nullable();
-            $table->foreign('post_id')->references('post_id')->on('posts');
+            $table->unsignedBigInteger('post_id');
 
-            // $table->unsignedBigInteger('post_id');
-            // $table->foreign('post_id')->references('post_id')->on('posts');
+            $table->foreign('post_id')->references('id')->on('posts');
+
+          
 
         });
     }

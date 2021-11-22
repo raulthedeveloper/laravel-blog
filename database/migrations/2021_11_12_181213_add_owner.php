@@ -26,7 +26,7 @@ class AddOwner extends Migration
     public function down()
     {
         Schema::table('portfolio', function (Blueprint $table) {
-            $table->dropColumn('author');
+            $table->dropColumn('owner');
         });
     }
 }

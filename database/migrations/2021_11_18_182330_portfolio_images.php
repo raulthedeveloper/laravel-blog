@@ -16,11 +16,9 @@ class PortfolioImages extends Migration
         Schema::create('portfolio_images', function (Blueprint $table) {
             $table->string('name');
             $table->string('image');
-            // $table->unsignedBigInteger('item_id');
-            // $table->foreign('item_id')->references('item_id')->on('portfolio');
-
-            $table->bigInteger('item_id')->unsigned()->nullable();
-            $table->foreign('item_id')->references('item_id')->on('portfolio');
+           
+            $table->unsignedBigInteger('item_id');
+            $table->foreign('item_id')->references('id')->on('portfolio')->onUpdate('cascade');
         });
     }
 
