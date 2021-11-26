@@ -182,7 +182,7 @@ class BlogController extends Controller
 
 
         // $post_images= new PostImages;
-        dd($request->post_images);
+        // dd($request->post_images);
 
 
         if($request->hasFile('post_images'))
