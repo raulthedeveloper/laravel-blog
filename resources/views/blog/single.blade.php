@@ -2,6 +2,7 @@
 
 @section('content')
 
+{{-- {{$post}} --}}
 
 <div class="container">
 
@@ -18,11 +19,11 @@
 
             </div>
             {{-- <img class="w-100" style="max-height:500px" src="{{asset("storage/images/post_images/".$post->featured_image)}}" alt=""> --}}
-            <img class="w-100" style="max-height:500px" src="https://mlbostoncommon.com/get/files/image/galleries/interior-deign-spacejoy-unsplash.jpg" alt="">
+            <img class="w-100" style="max-height:500px" src="{{ asset("storage/images/post_featured_images/". $post->featured_image) }}" alt="">
 
-            <span>Author: Jane Doe | </span>
+            <span>Author: {{$post->author}} | </span>
             <span>Date: 3/12/22 | </span>
-            <span>Category: Design </span>
+            <span>Category: {{$post->category}} </span>
 
             <p class="mt-3">{{$post->main_text}}</p> 
 

@@ -10,7 +10,7 @@
         <div class="card m-auto w-100" >
             <div class="row g-0">
               <div class="col-md-4">
-                <img  src="{{$post->featured_image}}" class="img-fluid rounded-start h-100" alt="...">
+                <img  src="{{ asset("storage/images/post_featured_images/". $post->featured_image) }}" class="img-fluid rounded-start h-100" alt="...">
               </div>
               <div class="col-md-8">
                 <div class="card-body"><h3>{{$post->title}}</h3>

@@ -34,8 +34,10 @@
                 </div>
                 <div class="form-group">
                     <label for="exampleFormControlTextarea1">Body</label>
-                    <textarea class="form-control" id="exampleFormControlTextarea1" name="main_text" rows="6"
+                    <textarea id="summernote" class="form-control" id="exampleFormControlTextarea1" name="main_text" rows="6"
                         value="{{ old('main_text') }}"></textarea>
+                                {{-- <div id="summernote"></div> --}}
+
                 </div>
 
                 <div class="row">
@@ -80,7 +82,10 @@
             </form>
 
             
-        </div>
+        </div>   
+        
+        {{-- <div id="summernote"></div> --}}
+
 
         <div class="col-md-4 col-sm-12">
             <div>
@@ -104,6 +109,8 @@
         </div>
     </div>
 </div>
+
+
 
 @include('includes.delete_category_modal')
 @endsection
