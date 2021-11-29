@@ -21,6 +21,8 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 
 Route::get('/portfolio',[App\Http\Controllers\PortfolioController::class, 'index'])->name('portfolio');
 
+Route::get('/portfolio_item',[App\Http\Controllers\PortfolioController::class, 'single'])->name('portfolio_item');
+
 
 // Retrieves blog posts
 Route::get('/blog',[App\Http\Controllers\BlogController::class, 'index'])->name('blog');

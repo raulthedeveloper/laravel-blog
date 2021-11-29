@@ -30,12 +30,14 @@
                 </div>
                 <div class="form-group">
                     <label for="exampleFormControlTextarea1">Body</label>
-                    <textarea class="form-control" id="exampleFormControlTextarea1" name="description" rows="6"
-                        value="{{ old('description') }}"></textarea>
+                    <textarea id="summernote" class="form-control" id="exampleFormControlTextarea1" name="description" rows="6"
+                        value="{{ old('main_text') }}"></textarea>
+                                {{-- <div id="summernote"></div> --}}
+
                 </div>
 
                 <div class="row">
-                    <div class="col-6">
+                    <div class="col-4">
                         <div class="form-group">
                             <label for="exampleFormControlFile1">Featured Image (url)</label>
                             {{-- <input name="featured_image" type="file" class="form-control-file" id="exampleFormControlFile1"> --}}
@@ -43,7 +45,7 @@
                                 value="{{ old('images') }}">
                         </div>
                     </div>
-                    <div class="col-6">
+                    <div class="col-4">
                         <div class="form-group">
                             <label for="exampleFormControlFile1">Category</label>
                             <select name="category" class="form-control" value="{{ old('category') }}">
@@ -52,8 +54,17 @@
                                 @endforeach
                             </select>
                         </div>
+
+                        
+                   
  
 
+                    </div>
+                    <div class="col-4">
+                        <div class="form-group">
+                            <label for="exampleFormControlFile1">Upload Carousel Images</label>
+                            <input name="post_images[]" type="file" class="form-control-file" multiple>
+                          </div>
                     </div>
                 </div>
 

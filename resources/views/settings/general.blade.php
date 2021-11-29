@@ -17,10 +17,36 @@
                       <input name="email" type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
                       <div id="emailHelp" class="form-text">Email is used for contact form submits</div>
                     </div>
-    
+                    <div>
+                        <h4>Add Social Media Url</h4>
+                        <div class="row">
+                        
+                            <div class="mb-3 col-4">
+                                <label for="exampleInputEmail1" class="form-label">Facebook</label>
+                                <input name="facebook" type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                              </div>
+        
+                              <div class="mb-3 col-4">
+                                <label for="exampleInputEmail1" class="form-label">Instagram</label>
+                                <input name="instagram" type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                              </div>
+        
+                              <div class="mb-3 col-4">
+                                <label for="exampleInputEmail1" class="form-label">Linkedin</label>
+                                <input name="linkedin" type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                              </div>
+                        </div>
+
+                        <small>Social Media Links are applied as links in blog posts</small>
+
+                    </div>
+                    
+                    
+                   
+                      
                    
                     
-                    <button type="submit" value="Upload" class="btn btn-primary">Submit</button>
+                    <button type="submit" value="Upload" class="btn btn-primary mt-4">Update</button>
                   </form>
                 </div>
                 

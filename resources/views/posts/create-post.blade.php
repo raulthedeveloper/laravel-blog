@@ -62,13 +62,13 @@
                         
 
                     </div>
-
+{{-- 
                     <div class="col-4">
                         <div class="form-group">
                             <label for="exampleFormControlFile1">Upload Posts Images</label>
                             <input name="post_images[]" type="file" class="form-control-file" multiple>
                           </div>
-                    </div>
+                    </div> --}}
                 </div>
 
 

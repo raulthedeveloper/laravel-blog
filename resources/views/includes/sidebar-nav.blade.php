@@ -9,8 +9,11 @@
       <div class="sidebar-header">
         <div class="user-pic">
           @if(auth()->user()->avatar)
-          <img class="img-responsive img-rounded" src="{{ asset("storage/images/profile_avatar/". auth()->user()->avatar) }}"
+          <a target="_blank" href="{{ asset("storage/images/profile_avatar/". auth()->user()->avatar) }}">
+            <img class="img-responsive img-rounded" src="{{ asset("storage/images/profile_avatar/". auth()->user()->avatar) }}"
             alt="User picture">
+          </a>
+          
           
           @else 
             <img class="img-responsive img-rounded" src="https://raw.githubusercontent.com/azouaoui-med/pro-sidebar-template/gh-pages/src/img/user.jpg"

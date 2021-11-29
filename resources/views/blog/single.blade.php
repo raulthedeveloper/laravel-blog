@@ -25,14 +25,10 @@
             <span>Date: 3/12/22 | </span>
             <span>Category: {{$post->category}} </span>
 
-            <p class="mt-3">{{$post->main_text}}</p> 
+            <p class="mt-3">{!! $post->main_text !!}</p> 
 
 
-            <h3>I am a Header</h3>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Animi eveniet incidunt nihil ratione quo consectetur commodi velit tempore deleniti rem illo ipsum pariatur, consequatur nobis veniam, accusantium atque officia alias!</p>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Animi eveniet incidunt nihil ratione quo consectetur commodi velit tempore deleniti rem illo ipsum pariatur, consequatur nobis veniam, accusantium atque officia alias!</p>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Animi eveniet incidunt nihil ratione quo consectetur commodi velit tempore deleniti rem illo ipsum pariatur, consequatur nobis veniam, accusantium atque officia alias!</p>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Animi eveniet incidunt nihil ratione quo consectetur commodi velit tempore deleniti rem illo ipsum pariatur, consequatur nobis veniam, accusantium atque officia alias!</p>
+          
         </div>
         <div class="col-md-4" style="background-color:#e9ecef;">
             
@@ -43,6 +39,11 @@
 
               <div>
                   <h5 class="font-weight-bold">Recent Blog Posts</h5>
+
+                  @foreach ($recent_posts as $post)
+                     <p><a href="{{ route('blog') }}/{{$post->category}}/{{$post->slug}}">{{$post->title}}</a></p> 
+                     
+                  @endforeach
 
                   <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ea deleniti illum reprehenderit atque praesentium</p>
 
@@ -58,46 +59,17 @@
 
                   <h5 class="font-weight-bold mb-2">Blog Categories</h5>
 
+                  {{-- {{$categories}} --}}
+
                   <div style="height: 300px; overflow:scroll">
 
+                    @foreach ($categories as $category)
                     <hr>
-                    <a href="#">Lifestyle</a>
-                    
-  
-                    <hr>
+                    {{-- Will link to the archives with that category --}}
+                    <a href="#">{{$category->category}}</a>
+                    @endforeach
 
-                    <a href="">Education</a>
                     
-  
-                    <hr>
-                    <a href="">Festive</a>
-                   
-  
-                    <hr>
-                    <a href="">Design</a>
-                    
-
-                    <hr>
-                   
-                   
-                    <a href="#">Lifestyle</a>
-                    
-  
-                    <hr>
-
-                    <a href="">Education</a>
-                    
-  
-                    <hr>
-                    <a href="">Festive<</a>
-                   
-  
-                    <hr>
-                    <a href="">Design</a>
-                    
-
-                    <hr>
-                    <a href="">Lifestyle</a>
                    
   
                     <hr>

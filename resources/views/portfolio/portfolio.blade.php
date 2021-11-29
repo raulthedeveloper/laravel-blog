@@ -18,6 +18,7 @@
             </div>
         </div>
         <div class="col-md-6 mb-4">
+            <a href="{{route("portfolio_item")}}">Item Test Link</a>
             <div class="card bg-dark text-white">
                 <img src="https://www.thespruce.com/thmb/mj57Tjew3HR5eVnplxKCq1X7jeg=/2119x1192/smart/filters:no_upscale()/GettyImages-1161177015-f1de4ba58a6c4f50969d9119d80405a6.jpg"
                     class="card-img" alt="...">

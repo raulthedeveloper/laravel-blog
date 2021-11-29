@@ -38,7 +38,7 @@
                 </div>
                 <div class="form-group">
                     <label for="exampleFormControlTextarea1">Body</label>
-                    <textarea class="form-control" id="exampleFormControlTextarea1" name="main_text"
+                    <textarea id="summernote" class="form-control" id="exampleFormControlTextarea1" name="main_text"
                         rows="6">{{$post->main_text}}</textarea>
                 </div>
 

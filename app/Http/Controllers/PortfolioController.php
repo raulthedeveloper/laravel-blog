@@ -24,7 +24,7 @@ class PortfolioController extends Controller
 
     public function single(Request $request)
     {
-        return view('portfolio.single')->with("title",$request->title);
+        return view('portfolio.single')->with("title","Test Item");
     }
 
     public function createNewCategory(Request $request)

@@ -55,11 +55,14 @@ class BlogController extends Controller
     {
         // grab data from database with id and pass to view
 
+        $catergories = DB::table('blog_categories')->get();
         $post = Post::where('slug',$id)->first(); 
+        // $recent_posts = DB::table('posts')->get();
+        $recent_posts = DB::table('posts')->orderBy('created_at', 'desc')->limit(3)->get();
 
 
 
-        return view("blog.single")->with('title',$post->title)->with('post',$post);
+        return view("blog.single")->with('title',$post->title)->with('post',$post)->with('categories',$catergories)->with('recent_posts',$recent_posts);
     }
 
     /**
@@ -94,7 +97,7 @@ class BlogController extends Controller
 
     public function create(Request $request)
     {
-        
+        // dd($request);
 
         $first_name = auth()->user()->first_name;
         $last_name = auth()->user()->last_name;
@@ -211,14 +214,11 @@ class BlogController extends Controller
                 // Also Save images in folder
 
 
-            
-
+    
 
             }
 
-            
-            
-
+    
 
             
         }

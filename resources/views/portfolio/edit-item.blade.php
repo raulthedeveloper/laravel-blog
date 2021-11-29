@@ -29,20 +29,20 @@
                 </div>
                 <div class="form-group">
                     <label for="exampleFormControlTextarea1">Body</label>
-                    <textarea class="form-control" id="exampleFormControlTextarea1" name="description" rows="6"
+                    <textarea id="summernote" class="form-control" id="exampleFormControlTextarea1" name="description" rows="6"
                         value="">{{ $item->description }}</textarea>
                 </div>
 
                 <div class="row">
-                    <div class="col-6">
+                    <div class="col-4">
                         <div class="form-group">
-                            <label for="exampleFormControlFile1">Images (url)</label>
+                            <label for="exampleFormControlFile1">Featured Image (url)</label>
                             {{-- <input name="featured_image" type="file" class="form-control-file" id="exampleFormControlFile1"> --}}
                             <input class="form-control" name="images" type="text"
-                                value="{{ $item->images }}">
+                                value="{{ old('images') }}">
                         </div>
                     </div>
-                    <div class="col-6">
+                    <div class="col-4">
                         <div class="form-group">
                             <label for="exampleFormControlFile1">Category</label>
                             <select name="category" class="form-control" value="{{ old('category') }}">
@@ -52,10 +52,16 @@
                             </select>
                         </div>
 
-                       
+                        
+                   
+ 
 
-                       
-
+                    </div>
+                    <div class="col-4">
+                        <div class="form-group">
+                            <label for="exampleFormControlFile1">Upload Carousel Images</label>
+                            <input name="post_images[]" type="file" class="form-control-file" multiple>
+                          </div>
                     </div>
                 </div>
 
