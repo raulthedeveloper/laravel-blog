@@ -27,7 +27,11 @@
             </tr>
           </thead>
           <tbody>
+
+            
+            
             @foreach ($posts as $post)
+            {{ $post->category }}
             <tr>
               <th scope="row">1</th>
               <td>{{$post->title}}</td>
@@ -35,8 +39,8 @@
               <td>{{$post->category}}</td>
               <td>{{$post->created_at->isoFormat('dddd D, Y')}}</td>
               <td><a href="{{ route('blog') }}/{{$post->category}}/{{$post->slug}}" class="btn btn-primary">View</a></td>
-              <td><a href="{{ route('edit_post_form',[$post->post_id]) }}" class="btn btn-secondary">Edit</a></td>
-              <td><button type="button" class="btn btn-danger" onclick="deletePost('{{ route('delete_post',[$post->post_id]) }}')">
+              <td><a href="{{ route('edit_post_form',[$post->id]) }}" class="btn btn-secondary">Edit</a></td>
+              <td><button type="button" class="btn btn-danger" onclick="deletePost('{{ route('delete_post',[$post->id]) }}')">
                 Delete
               </button>
               </td>

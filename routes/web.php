@@ -74,7 +74,13 @@ Route::post('/add_portfolio_category',[App\Http\Controllers\PortfolioController:
 // Settings
 Route::get('/settings_general',[App\Http\Controllers\SettingsController::class, 'settingsGeneral'])->name('settings_general');
 
+Route::get('/settings_users',[App\Http\Controllers\SettingsController::class, 'settingsUsers'])->name('settings_users');
+
+
 Route::post('/upload_avatar',[App\Http\Controllers\SettingsController::class, 'uploadAvatar'])->name('upload_avatar');
+
+
+
 
 
 

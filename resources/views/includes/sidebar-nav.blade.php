@@ -171,6 +171,29 @@
               </ul>
             </div>
           </li>
+          <li class="sidebar-dropdown">
+            <a href="#">
+              <i class="fa fa-cog"></i>
+              <span>Settings</span>
+            </a>
+            <div class="sidebar-submenu">
+              <ul>
+                <li>
+                  <a href="{{route('settings_general')}}">General Settings</a>
+                </li>
+                <li>
+                  <a href="{{route('settings_users')}}">User Settings</a>
+                </li>
+                <li>
+                  <a href="#">Bar chart</a>
+                </li>
+                <li>
+                  <a href="#">Histogram</a>
+                </li>
+              </ul>
+            </div>
+          </li>
+
           <li class="header-menu">
             <span>Extra</span>
           </li>
@@ -187,12 +210,9 @@
               <span>Calendar</span>
             </a>
           </li>
-          <li>
-            <a href="{{route('settings_general')}}">
-              <i class="fa fa-cog"></i>
-              <span>Settings</span>
-            </a>
-          </li>
+          
+
+          
         </ul>
       </div>
       <!-- sidebar-menu  -->

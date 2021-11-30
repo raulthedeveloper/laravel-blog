@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use App\Models\User;
+use Illuminate\Support\Facades\DB;
+
 
 use Auth;
 
@@ -41,6 +43,14 @@ class SettingsController extends Controller
             }
         
         return redirect()->back()->with('message','Avatar Updated');
+    }
+
+    public function settingsUsers()
+    {
+        $users = DB::table('users')->get();
+
+       
+        return view('settings.user_settings')->with('title','Users Settings')->with('users',$users);
     }
 
     

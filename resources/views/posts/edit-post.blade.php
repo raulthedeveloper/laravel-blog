@@ -7,7 +7,7 @@
 <div class="container">
     <div class="mb-3"  >
         <a href="{{ route('admin_posts')}}" class="btn btn-dark">Back</a>
-    <a href="{{ route('blog') }}/{{$post->slug}}" class="btn btn-primary">View</a>
+    <a href="{{ route('blog') }}/{{$post->slug}}/{{$post->id}}" class="btn btn-primary">View</a>
     </div>
     
     
@@ -28,7 +28,7 @@
                 </ul>
             </div>
             @endif
-            <form action="{{ route('update_post',[$post->post_id]) }}" method="POST" enctype="multipart/form-data">
+            <form action="{{ route('update_post',[$post->id]) }}" method="POST" enctype="multipart/form-data">
                 @csrf
                 @method('POST')
                 <div class="form-group">
@@ -67,6 +67,9 @@
                             <input name="featured_image" type="file" class="form-control-file" multiple>
                           </div>
                 </div>
+                </div>
+
+                    
 
 
 

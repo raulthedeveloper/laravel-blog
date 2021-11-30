@@ -81,11 +81,12 @@ class BlogController extends Controller
 
     public function editPostForm($id, Request $request)
     {
-        
-    //    $post = Post::where('post_id', $id);
-    $catergories = DB::table('blog_categories')->get();
-   
-    $post =  Post::where('post_id', $id)->first();
+       
+        //    $post = Post::where('post_id', $id);
+        $catergories = DB::table('blog_categories')->get();
+    
+        $post =  Post::where('id', $id)->first();
+
        
         return view('posts.edit-post')->with("title","Edit Post")->with('post',$post)->with('categories',$catergories)->with('message','Post Updated');
     }
@@ -158,6 +159,8 @@ class BlogController extends Controller
         $userId = auth()->user()->id;
         $posts = Post::where('user_id', $userId)->get();
 
+        
+
         return view('posts.admin-posts')->with('title','Your Posts')->with('posts',$posts);
     }
 
@@ -173,9 +176,11 @@ class BlogController extends Controller
     public function update(Request $request, $id)
     {
 
+        
+
         $this->uploadFeaturedImage($request,$id,true);
 
-        Post::where('post_id',$id)->update(['title'=>$request->title,'main_text'=>$request->main_text,'category'=>$request->category]);
+        Post::where('id',$id)->update(['title'=>$request->title,'main_text'=>$request->main_text,'category'=>$request->category]);
         return redirect()->back()->with('message', 'Post Updated.');
 
     }
@@ -184,9 +189,7 @@ class BlogController extends Controller
     {
 
 
-        // $post_images= new PostImages;
-        // dd($request->post_images);
-
+       
 
         if($request->hasFile('post_images'))
         {
@@ -282,11 +285,11 @@ class BlogController extends Controller
      */
     public function destroy($id)
     {
-        $currentImage =  DB::table('posts')->where('post_id', $id)->first();
+        $currentImage =  DB::table('posts')->where('id', $id)->first();
 
         Storage::delete('/public/images/post_images/' . $currentImage->featured_image);
 
-        Post::where('post_id', $id)->delete();
+        Post::where('id', $id)->delete();
 
 
         return redirect()->back()->with('message', 'Post deleted.');
