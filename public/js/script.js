@@ -55,7 +55,6 @@ $("#submit_post").submit(function (event) {
     event.currentTarget.onsubmit()
 })
 
-console.log('scripts are working')
 
 
 // Deletes posts in admin page
@@ -78,4 +77,28 @@ $('#summernote').summernote({
   focus: true                  // set focus to editable area after initializing summernote
 });
 
+// Carousel for portfolio single page
+$(document).ready(function(){
+  $('.owl-carousel').owlCarousel({
+    loop:true,
+    dots:true,
+    nav:true,
+    margin:15,
+    padding:10,
+    responsiveClass:true,
+    responsive:{
+        0:{
+            items:1,
+            padding:10
 
+        },
+        600:{
+            items:3,
+        },
+        1000:{
+            items:5,
+            loop:false
+        }
+    }
+})
+  });

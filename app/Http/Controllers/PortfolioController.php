@@ -127,17 +127,6 @@ class PortfolioController extends Controller
         return view('portfolio.admin-items')->with('title','Your items')->with('items',$items);
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
    
 
     /**
